@@ -16,7 +16,6 @@
         android:layout_height="400dp">
 
         <TextView
-            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bitcoin Price:"
@@ -113,7 +112,7 @@
             android:layout_alignBottom="@+id/email"
             android:layout_alignLeft="@+id/getNote"
             android:layout_alignStart="@+id/getNote"
-            android:text="Email"
+            android:text="Email/QR"
             android:visibility="gone"
             tools:visibility="invisible"/>
 

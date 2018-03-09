@@ -69,10 +69,6 @@ public class MainActivity extends AppCompatActivity implements SharedData{
         bSend = (Button) findViewById(R.id.sentBTC);
         qScanner = (Button) findViewById(R.id.qr_scanner);
         appLogout = (Button) findViewById(R.id.logout);
-
-
-
-
         bLogin.setVisibility(View.VISIBLE);
 
         bLogin.setOnClickListener(new View.OnClickListener() {
@@ -89,8 +85,7 @@ public class MainActivity extends AppCompatActivity implements SharedData{
                 String amount = send_amount.getText().toString();
 
 //                if(isValidEmail(email) && isValidAmount(amount)){
-                    api.sendBtc(email, amount , MainActivity.this,
-                            getString(R.string.AuthCode),getString(R.string.AuthKey));
+                    api.sendBtc(email, amount , MainActivity.this);
 //                }
                 send_amount.setText("");
                 send_email.setText("");
@@ -129,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements SharedData{
             } else {
 
                 send_email.setText(result.getContents().replace("bitcoin:", ""));
-                //tvScanFormat.setText(result.getFormatName());
 
             }
         } else {
@@ -142,11 +136,7 @@ public class MainActivity extends AppCompatActivity implements SharedData{
         btcBalText.setText(name + "'s Wallet:");
     }
 
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.main.menu, menu);
-//        return true;
-//    }
+
     private boolean isValidEmail(CharSequence email) {
         if (TextUtils.isEmpty(email)) {
             send_email.setError("Field is require");
@@ -160,24 +150,11 @@ public class MainActivity extends AppCompatActivity implements SharedData{
         return true;
     }
 
-    private boolean isValidAmount(String amount) {
-        if (TextUtils.isEmpty(amount)) {
-            send_amount.setError("Field is require");
-            return false;
-        }
-        if (!(Integer.valueOf(amount) > 0)) {
-            send_amount.setError("Need positive value");
-            return false;
-        }
-        send_amount.setError(null);
-        return true;
-    }
-
 
     @Override
     protected void onNewIntent(final Intent intent) {
         if (intent != null && intent.getAction() != null && intent.getAction().equals("android.intent.action.VIEW")) {
-            Log.d(TAG, "COMPLETE AUasdfafeadfaefadsfaefadfaefadsfaefasdfeafsafeafTH");
+            Log.d(TAG, "New Intent");
             //api.handleIntent(intent, MainActivity.this);
             api.completeLogin(MainActivity.this,intent.getData());
         }
